@@ -1,0 +1,3 @@
+Here we find the bugs , explain them , and fix them
+-When you launch the choice 1 you have to click before the screen shows
+-
