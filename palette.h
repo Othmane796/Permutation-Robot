@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <SDL/SDL.h>
 #include <stdlib.h>
+#include <math.h>
 
 void afficher_palette_pieces(ElemTabCouleur** tab,int nb_couleurs,SDL_Surface* surface);
 void afficher_pile(double largeur_pile,double hauteur_pile,int nb_pieces,Uint32* tab_pile,SDL_Surface* ecran);

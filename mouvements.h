@@ -1,11 +1,12 @@
 #ifndef MOVE
 #define MOVE
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL.h>
-#include <stdlib.h>
+#include <math.h>
+
 #include "plateau.h"
-//#include <SDL/SDL_image.h> 
 
 Uint32 getpixel(SDL_Surface *surface, int x, int y);
 

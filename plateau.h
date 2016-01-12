@@ -1,12 +1,14 @@
 #ifndef PLATEAU
 #define PLATEAU
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL.h>
-#include <stdlib.h>
+#include <time.h>
 #include <math.h>
 
 typedef struct case_plateau case_plateau;
+
 
 typedef struct Piece{
     int rayon;

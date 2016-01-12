@@ -1,13 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <SDL/SDL.h>
-#include <time.h>
 #include "plateau.h"
 #include "palette.h"
 #include "mouvements.h"
 #include "text.h"
 #include "graph_model.h"
-#include <math.h>
+
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------AUTRES--------------------------------------------------------------------*/
@@ -649,6 +645,7 @@ void jeu(int nb_cases,int nb_couleurs,int choix){
    	
    	position.x=0;
    	position.y=0;
+							SDL_Flip(ecran);
 if(choix==1){	
 
 	int continuer = 1,t=1,cmpt_changements=0;
@@ -661,28 +658,29 @@ if(choix==1){
 	
 while(continuer)
 {
-	    SDL_WaitEvent(&event);
-	    switch(event.type)
-	    {
-	        case SDL_QUIT:
-	            continuer = 0;
-	            break;
-	            
-	        case SDL_MOUSEBUTTONUP:
-		      	x_click=event.button.x;
-			    y_click=event.button.y;
-			      
-			     if( (x_click >= position_plateau.x) && (x_click <= position_plateau.x + nb_cases*taille_cases) && (y_click > position_plateau.y) && (y_click < position_plateau.y + taille_cases*nb_cases) ){
-				recuperer_indices(position_plateau.x,position_plateau.y,event.button.x,event.button.y,taille_cases,&indice_i,&indice_j);
-				c_click=plateau[indice_i*nb_cases + (indice_j) ];
-				click=1;
-				if( c_click->p != NULL){
-				pile_couleurs[indice_pile]=c_click->p->couleur;
-				indice_pile++;
-				}
+	SDL_WaitEvent(&event);
+	switch(event.type)
+	{
+	case SDL_QUIT:
+	    continuer = 0;
+	    break;
+	    
+	case SDL_MOUSEBUTTONUP:
+	      	x_click=event.button.x;
+		    y_click=event.button.y;
+		      
+		     if( (x_click >= position_plateau.x) && (x_click <= position_plateau.x + nb_cases*taille_cases) && (y_click > position_plateau.y) && (y_click < position_plateau.y + taille_cases*nb_cases) ){
+			// You only get inside if the click is inside the grid
+			recuperer_indices(position_plateau.x,position_plateau.y,event.button.x,event.button.y,taille_cases,&indice_i,&indice_j);
+			c_click=plateau[indice_i*nb_cases + (indice_j) ];
+			click=1;
+			if( c_click->p != NULL){
+			pile_couleurs[indice_pile]=c_click->p->couleur;
+			indice_pile++;
 			}
-				break;
-	    }
+		}
+			break;
+	}
 	    
 	 if(click && c_click->p !=NULL){
  		if(c_click->p->couleur != c_click->couleur){

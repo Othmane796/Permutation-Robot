@@ -1,9 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <SDL/SDL.h>
 #include "plateau.h"
 #include "palette.h"
-#include <math.h>
 
 void afficher_palette_pieces(ElemTabCouleur** tab,int nb_couleurs,SDL_Surface* surface){
 

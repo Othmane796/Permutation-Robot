@@ -1,10 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <SDL/SDL.h>
-
 #include "mouvements.h"
-#include "plateau.h"
-#include <math.h>
 
 //Recupere le pixel qui se trouve dans la position x,y 
 Uint32 getpixel(SDL_Surface *surface, int x, int y)

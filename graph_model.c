@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "graph_model.h"
-#include "plateau.h"
 
 /*prend un pointeur vers une case et trouve les(i,j) de cette case dans le tableau "plateau"*/
 void trouver_case(int *indice_i,int *indice_j,case_plateau** plateau,int nb_cases,case_plateau *la_case){

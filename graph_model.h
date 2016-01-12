@@ -1,6 +1,10 @@
 #ifndef GRAPH
 #define GRAPH
+
+#include <stdio.h>
+#include <stdlib.h>
 #include "plateau.h"
+
 typedef struct arc  Arc;
 
 struct arc{
