@@ -11,16 +11,15 @@ int main(){
 	 unsigned int seed;
 	 int nb_cases,nb_couleurs,choix;
 	 int new=0;
-	 printf("Le but du jeu est de déplacer les pièces de couleur dans des cases de même couleur en faisant le moins de changements de couleurs possibles\nOn dit qu'on a fait un changement de couleur lorsqu'on a bougé une pièce d'une couleur differente à celle qu'on a bougé precedemment.\nPour bouger les pièces il suffit de cliquer sur elles sur le plateau de jeu\nVous disposez d'une pile à droite du tableau qui montre les couleurs des pièces que vous avez bougé\n");
-	 
-	 printf("Entrez le nb de cases:");
+	 printf("The purpose of this game is to move the colored circles (pieces) inside the squares (spots) with the same color, while minimizing the score.\nThe score is incremented by 1 each time we move a different color from the one we moved before.\nIn order to move a piece all you have to do is click on it.\nThere is also a stack on the right to help you see how many color changes you made\n");
+	 printf("How big you want the grid to be (ex : 4 squares 16 squares ...)?");
 	 scanf("%d",&nb_cases);
-	 printf("Entrez le nb de couleur:");
+	 printf("How many colors you want to use ?");
 	 scanf("%d",&nb_couleurs);
-	 
+
 	 while(1){
 	 	if(!new){
-		 	printf("Que voulez vous faire:\n0-Quitter\n1-Jouer vous meme \n2-Laisser notre premier algo jouer\n3-Laisser notre deuxieme algo jouer\n4-Aide\n");
+		 	printf("Would you like to :\n0-Exit\n1-Play manually \n2-Let the first algorithme solve the puzzle \n3-Let the second algorithme solve the puzzle \n4-Help\n");
 		 	scanf("%d",&choix);
 		 	if(!choix)
 		 		return 0;
@@ -31,12 +30,12 @@ int main(){
 			 	new=1;
 			 }
 			else{
-				printf("Le but du jeu est de déplacer les pièces de couleur dans des cases de même couleur en faisant le moins de changements de couleurs possibles\nOn dit qu'on a fait un changement de couleur lorsqu'on a bougé une pièce d'une couleur differente à celle qu'on a bougé precedemment.\nPour bouger les pièces il suffit de cliquer sur elles sur le plateau de jeu\nVous disposez d'une pile à droite du tableau qui montre les couleurs des pièces que vous avez bougé\n");
-			
+				printf("The purpose of this game is to move the colored circles (pieces) inside the squares (spots) with the same color, while minimizing the score.\nThe score is incremented by 1 each time we move a different color from the one we moved before.\nIn order to move a piece all you have to do is click on it.\nThere is also a stack on the right to help you see how many color changes you made\n");
+
 			}
 		}
 	 	else{
-	 		printf("Que voulez vous faire:\n0-Quitter\n1-Rejouer la même instance vous meme \n2-Laisser notre premier algo jouer la meme instance \n3-Laisser notre deuxieme algo jouer la meme instance \n4-Jouer avec une autre instance\n5-Aide\n");
+			printf("Would you like to :\n0-Exit\n1-Play manually \n2-Let the first algorithme solve the puzzle \n3-Let the second algorithme solve the puzzle \n4-Help\n");
 	 		scanf("%d",&choix);
 	 		if(!choix)
 	 			return 0;
@@ -47,30 +46,15 @@ int main(){
 	 		if(choix==4)
 	 			new=0;
 	 		if(choix ==5){
-				printf("Le but du jeu est de déplacer les pièces de couleur dans des cases de même couleur en faisant le moins de changements de couleurs possibles\nOn dit qu'on a fait un changement de couleur lorsqu'on a bougé une pièce d'une couleur differente à celle qu'on a bougé precedemment.\nPour bouger les pièces il suffit de cliquer sur elles sur le plateau de jeu\nVous disposez d'une pile à droite du tableau qui montre les couleurs des pièces que vous avez bougé\n");
-			
+				printf("The purpose of this game is to move the colored circles (pieces) inside the squares (spots) with the same color, while minimizing the score.\nThe score is incremented by 1 each time we move a different color from the one we moved before.\nIn order to move a piece all you have to do is click on it.\nThere is also a stack on the right to help you see how many color changes you made\n");
+
 			}
-	 		}	
-	 	}	
-	 	
-	 
-	 
-    
+	 		}
+	 	}
+
+
+
+
     return 0;
 
 }
-/*#include <stdlib.h>
-#include <stdio.h>
-#include <SDL/SDL.h>
-#include "plateau.h"
-#include "mouvements.h"
-#include <time.h>
-#include <math.h>
-
-int main(){
-
-    srand(time(NULL));
-    jeu();
-    return 0;
-
-}*/

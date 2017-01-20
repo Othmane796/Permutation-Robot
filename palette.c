@@ -7,14 +7,14 @@ void afficher_palette_pieces(ElemTabCouleur** tab,int nb_couleurs,SDL_Surface* s
 	int i=0;
 	int gFullScreenH = SDL_GetVideoInfo()->current_h;
 	int gFullScreenW = SDL_GetVideoInfo()->current_w;
-    double taille_case=gFullScreenH/15;
-    double rayon=gFullScreenH/45;//le 1/3 la taille de la case
-    double x=0;
+  double taille_case=gFullScreenH/15;
+  double rayon=gFullScreenH/45;//le 1/3 la taille de la case
+  double x=0;
 	double y=0;
-    Piece* p=malloc(sizeof(Piece*));
-    case_plateau* c=malloc(sizeof(case_plateau*));
-    SDL_Surface* rectangle;
-    
+  Piece* p=malloc(sizeof(Piece*));
+  case_plateau* c=malloc(sizeof(case_plateau*));
+  SDL_Surface* rectangle;
+
 	for(i=0;i<nb_couleurs;i++){
 		tmp=tab[i];
 		if(tmp){
@@ -26,7 +26,7 @@ void afficher_palette_pieces(ElemTabCouleur** tab,int nb_couleurs,SDL_Surface* s
 				p->c=c;
 				afficher_piece(p,surface,rectangle);
 				x+=taille_case;
-			
+
 			}
 	}
 	}
@@ -57,7 +57,7 @@ void afficher_palette_cases(ElemTabCouleur** tab,int nb_couleurs,SDL_Surface* su
 				afficher_case(c,surface,rectangle);
 				position.x+=taille_case;
 				x+=taille_case;
-			
+
 			}
 	}
 	}
@@ -78,10 +78,7 @@ void afficher_pile(double largeur_pile,double hauteur_pile,int nb_pieces,Uint32*
 			SDL_BlitSurface(rectangle,NULL,ecran,&position_rect);
 			position_rect.y-=hauteur_rectangle-1;
 		}
-		
+
 
 
 }
-
-	
-

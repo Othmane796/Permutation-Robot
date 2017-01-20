@@ -7,21 +7,21 @@ void trouver_case(int *indice_i,int *indice_j,case_plateau** plateau,int nb_case
 			A++;
 	*indice_i=A/nb_cases;
 	*indice_j=A%nb_cases;
-}	
-		
-		
+}
+
+
 Arc* inserer_arc_en_queue(Arc* liste,int u){
 
 	Arc * a=(Arc*)malloc(sizeof(Arc));
 	a->u=u;
 	a->suiv=NULL;
-	
+
 	if(liste == NULL){
 		return a;
 	}else{
 		Arc *tmp=liste;
 		while(tmp->suiv != NULL){
-			
+
 			tmp=tmp->suiv;
 		}
 		tmp->suiv=a;
@@ -30,11 +30,11 @@ Arc* inserer_arc_en_queue(Arc* liste,int u){
 }
 
 Arc * inserer_arc_debut(Arc * liste,int u){
-	
+
 	Arc * element=malloc(sizeof(Arc));
 	element->u=u;
 	element->suiv=liste;
-	
+
 	return element;
 
 
@@ -55,7 +55,7 @@ Arc * echanger_arcs(Arc * list,int a,int b){
 	tmp1=tmp;
 
 	i=1;
-	
+
 	tmp=list;
 	while(tmp->suiv != NULL && i < b){
 		tmp=tmp->suiv;
@@ -68,7 +68,7 @@ Arc * echanger_arcs(Arc * list,int a,int b){
 	tmp1->u=tmp_changement;
 
 	return list;
-}   
+}
 /* On prend une liste d'arcs 1->2->3->4... et on retourne 1->3->2->4 par exemple*/
 Arc * melanger_arcs(Arc *list){
 	Arc * tmp=list;
@@ -78,7 +78,7 @@ Arc * melanger_arcs(Arc *list){
 		n++;
 	}
 	//printf("On melange les %d arcs \n",n);
-	
+
 	tmp=list;
 	int a,b;
 	int i;
@@ -89,7 +89,7 @@ Arc * melanger_arcs(Arc *list){
 		echanger_arcs(tmp,a,b);
 	}
 
-	
+
 	return tmp;
 }
 
@@ -97,7 +97,7 @@ Arc * melanger_arcs(Arc *list){
 int existe_arc(int a,int b,SeqArc * C){
 	SeqArc * C_tmp=C;
 	int trouve=0;
-	
+
 	while(C_tmp && trouve == 0){
 		if(C_tmp->u == a && C_tmp->v == b){
 			trouve=1;
@@ -105,17 +105,18 @@ int existe_arc(int a,int b,SeqArc * C){
 			C_tmp=C_tmp->suiv;
 		}
 	}
-	
+
 	return trouve;
-	
-	
-	
+
+
+
 
 }
+
 int existe_chemin(int a,int b, SeqArc * C){
-	
+
 	int a_trouve=0,b_trouve=0;
-	
+
 	SeqArc * tmp=C;
 	while(tmp && a_trouve == 0 ){
 		if(tmp->u == a){
@@ -124,7 +125,7 @@ int existe_chemin(int a,int b, SeqArc * C){
 			tmp=tmp->suiv;
 		}
 	}
-	
+
 	if(a_trouve){
 		if(tmp->v == b){
 		 	b_trouve=1;
@@ -139,16 +140,18 @@ int existe_chemin(int a,int b, SeqArc * C){
 
 
 }
+
 void afficher_sequence_arcs(SeqArc *C){
 
 	SeqArc *tmp=C;
 	while(tmp){
 		printf("(%d,%d)->",tmp->u,tmp->v);
 		tmp=tmp->suiv;
-	
+
 	}
 
 }
+
 void free_sequence(SeqArc *C){
 	SeqArc * courant;
 	while( (courant = C) != NULL){
@@ -156,19 +159,20 @@ void free_sequence(SeqArc *C){
 		free(courant);
 	}
 }
+
 SeqArc* inserer_arc_en_queue_bis(SeqArc *Sequence,int u, int v){
 
 	SeqArc * S=malloc(sizeof(SeqArc));
 	S->u=u;
 	S->v=v;
 	S->suiv=NULL;
-	
+
 	if(Sequence == NULL){
 		return S;
 	}else{
 		SeqArc *tmp=Sequence;
 		while(tmp->suiv != NULL){
-			
+
 			tmp=tmp->suiv;
 		}
 		tmp->suiv=S;
@@ -177,16 +181,17 @@ SeqArc* inserer_arc_en_queue_bis(SeqArc *Sequence,int u, int v){
 }
 
 SeqArc* inserer_arc_debut_bis(SeqArc* liste,int u, int v){
-	
+
 	SeqArc * S=malloc(sizeof(SeqArc));
 	S->u=u;
 	S->v=v;
 	S->suiv=liste;
-	
+
 	return S;
 
 
 }
+
 void free_graph(Graphe* g){
 	int i=0;
 	for(i=0;i<g->nbsom;i++){
@@ -242,7 +247,7 @@ void construire_graph(Graphe* g,ElemTabCouleur** tab ,case_plateau** plateau,int
 				}
 			}
 		}
-		
+
 	}
 }
 
@@ -266,9 +271,6 @@ void afficher_graph_liste(Graphe * g){
 	}
 }
 
-
-
-    
 /*question 3.2 : Mise en place de l'algorithme expliqué dans l'heuristique 1*/
 SeqArc* heuristique_1(int * Tab_E , Graphe* g,case_plateau** plateau){
 
@@ -302,19 +304,19 @@ SeqArc* heuristique_1(int * Tab_E , Graphe* g,case_plateau** plateau){
 
 			Liste_arcs=melanger_arcs(Liste_arcs);
 
-			s=i;//sommet duquel sort l'arc (celui qu'on traite)	
+			s=i;//sommet duquel sort l'arc (celui qu'on traite)
 			t=Liste_arcs->u;//(s,t) represente le premier arc de la liste
-				if(/*existe_arc(t,s,C) || */existe_chemin(t,s,C) ){	
+				if(/*existe_arc(t,s,C) || */existe_chemin(t,s,C) ){
 				//	printf("il existe deja un arc (%d,%d)\n",t,s);
 					if(Liste_arcs->suiv != NULL  ){
-						
+
 					//printf("avant c'etait(%d,%d),maintenant je prend (%d,%d) \n",s,t,s,Liste_arcs->suiv->u);
 						t=Liste_arcs->suiv->u;//prendre l'arc suivant
 
-					
-					
-					
-					
+
+
+
+
 					//	printf("j'ai pris le deuxieme arc, boucle evité i= %d \n",i);//TEST REMOVE IT
 					}else{
 						printf("STOP \n");
@@ -323,33 +325,33 @@ SeqArc* heuristique_1(int * Tab_E , Graphe* g,case_plateau** plateau){
 				}
 
 			C=inserer_arc_en_queue_bis(C,s,t);//on rajout l'arc (s,t) a la liste d'arcs
-			
+
 			Tab_S[s]=1;
 			Tab_E[t]=1;
 			Liste_arcs=NULL;
 		}
-	
+
 	}
-	
-return C;	
+
+	return C;
 }
 
 EnsChemin * inserer_chemin(EnsChemin *liste,SeqArc * chem){
-	
+
 	EnsChemin * ens=malloc(sizeof(EnsChemin));
 	ens->chem=chem;
 	ens->suiv=liste;
-	
+
 	return ens;
 }
 
 /*question 3.3 : on prend une sequence d'arcs C un Tab_E pour savoir qui sont les sommets sans predecesseur et on retourn un EnsChemin
  Le principe est de prendre chaque sommet sans predecesseur et en trouver un chemin*/
 EnsChemin * extraire_chemins(SeqArc * C ,int * Tab_E,int nb_sommets){
-	
+
 	EnsChemin * les_chemins=NULL;
 	SeqArc *C_tmp=C;
-	
+
 	if(C == NULL){
 		les_chemins=NULL;
 	}else{
@@ -375,7 +377,7 @@ EnsChemin * extraire_chemins(SeqArc * C ,int * Tab_E,int nb_sommets){
 						//printf("Arc non trouvé \n");
 						ajouter =1;
 						les_chemins=inserer_chemin(les_chemins,sequence_tmp);
-					}else{		
+					}else{
 						//printf("Arc trouvé (%d,%d) \n",C_tmp->u,C_tmp->v);
 						sequence_tmp=inserer_arc_en_queue_bis(sequence_tmp,C_tmp->u,C_tmp->v);
 						s=C_tmp->v;
@@ -392,7 +394,7 @@ void afficher_chemins(EnsChemin *les_chemins){
 	EnsChemin *tmp=les_chemins;
 	if(tmp == NULL)
 		printf("pas de chemins \n");
-	
+
 	while(tmp){
 		afficher_sequence_arcs(tmp->chem);
 		printf("\n");
@@ -403,17 +405,18 @@ void afficher_chemins(EnsChemin *les_chemins){
 }
 
 void free_chemins(EnsChemin *les_chemins){
-	
+
 	EnsChemin *tmp=les_chemins;
 	if(tmp == NULL)
 		printf("pas de chemins a liberer \n");
-	
+
 	while(tmp){
 		free_sequence(tmp->chem);
 		tmp=tmp->suiv;
 	}
 	free(les_chemins);
 }
+
 /*il suffit de prendre la liste a inverser , creer une nouvelle liste vide puis rajouter les elements de la liste a inverser un par un au debut de liste vide ..reflichis un peu ..tu comprendra ..sinon ..Tant pis */
 SeqArc* inverser_sequence(SeqArc * Sequence){
 	SeqArc* S=NULL;
@@ -422,10 +425,9 @@ SeqArc* inverser_sequence(SeqArc * Sequence){
 		S=inserer_arc_debut_bis(S,S_tmp->u,S_tmp->v);
 		S_tmp=S_tmp->suiv;
 	}
-	
+
 	return S;
 }
-
 
 SeqArc* aligner(EnsChemin *les_chemins,case_plateau** plateau){
 
@@ -439,8 +441,8 @@ SeqArc* aligner(EnsChemin *les_chemins,case_plateau** plateau){
 	while(ens_tmp){
 		ch=ens_tmp->chem;//le chemin a traiter
 		while(ch){
-			//la couleur de l'arc (u,v) est celle de la case d'arrivee  : plateau[v]
-		//	trouve=0;
+		//la couleur de l'arc (u,v) est celle de la case d'arrivee  : plateau[v]
+		//trouve=0;
 		//tmp_S=S;
 		trouve=0;
 			while(tmp_S && trouve == 0){
@@ -451,7 +453,7 @@ SeqArc* aligner(EnsChemin *les_chemins,case_plateau** plateau){
 					tmp_S=tmp_S->suiv;//on continue a chercher
 				}
 			}
-		
+
 			if(trouve){
 				//inserer l'arc a(ch->u,ch->v) apres b(celui pointee par tmp_S
 				printf("j'insere quelque part\n");
@@ -461,7 +463,7 @@ SeqArc* aligner(EnsChemin *les_chemins,case_plateau** plateau){
 					arc_inserer->v=ch->v;
 					arc_inserer->suiv=tmp2_S;
 					tmp_S->suiv=arc_inserer;
-	
+
 			}else{
 				//on est arrivé a la fin de la liste tmp_S=S sans rien trouver
 				//inserer l'arc a en queue de S
@@ -470,13 +472,9 @@ SeqArc* aligner(EnsChemin *les_chemins,case_plateau** plateau){
 			ch=ch->suiv;//on traite l'arc suivant
 		}
 		ens_tmp=ens_tmp->suiv;//on traite le chemin suivant
-	
+
 	}
 
-	S=inverser_sequence(S); //on inverse la lista pck Mr Pierre l'as dis 
+	S=inverser_sequence(S); //on inverse la lista pck Mr Pierre l'as dis
 	return S;
 }
-
-
-
-
